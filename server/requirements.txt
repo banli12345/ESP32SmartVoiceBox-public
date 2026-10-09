@@ -1,0 +1,2 @@
+# The installed edge-tts version was not captured in the server export.
+edge-tts

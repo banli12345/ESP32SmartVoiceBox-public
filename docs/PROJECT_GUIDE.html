@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ESP32-S3 智能桌面终端项目文档</title>
+  <style>
+    :root {
+      --ink: #17202b;
+      --muted: #5f6c7b;
+      --line: #dce3ea;
+      --paper: #ffffff;
+      --wash: #f4f7fa;
+      --blue: #1769aa;
+      --blue-soft: #e8f2fb;
+      --teal: #087f8c;
+      --gold: #a66b00;
+      --red: #a23c3c;
+      --code: #17212b;
+      --code-ink: #e8f0f6;
+      --shadow: 0 12px 30px rgba(23, 32, 43, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      padding: 28px 20px; background: #101923; color: #dce8f0;
+    }
+    aside h1 { margin: 0 0 5px; font-size: 19px; line-height: 1.35; color: #fff; }
+    aside p { margin: 0 0 22px; color: #9fb3c1; font-size: 12px; }
+    nav a { display: block; padding: 7px 10px; margin: 2px 0; border-radius: 6px; color: #c9d7e1; font-size: 13px; }
+    nav a:hover { background: #1e3242; color: #fff; text-decoration: none; }
+    nav .group { margin: 18px 10px 5px; color: #6bd0d0; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    main { width: min(1180px, 100%); margin: 0 auto; padding: 34px 42px 80px; }
+    .hero { padding: 34px 38px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: var(--shadow); }
+    .eyebrow { margin: 0 0 8px; color: var(--teal); font-size: 12px; font-weight: 700; letter-spacing: .13em; }
+    h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 48px); line-height: 1.2; letter-spacing: 0; }
+    h2 { margin: 52px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--line); font-size: 27px; line-height: 1.3; }
+    h3 { margin: 28px 0 8px; font-size: 19px; line-height: 1.35; }
+    h4 { margin: 20px 0 5px; font-size: 15px; }
+    p { margin: 9px 0; }
+    .lead { max-width: 850px; color: var(--muted); font-size: 17px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag { display: inline-block; padding: 3px 10px; border: 1px solid #b8d4e8; border-radius: 999px; background: var(--blue-soft); color: #15537e; font-size: 12px; }
+    .notice { margin: 18px 0; padding: 14px 16px; border-left: 4px solid var(--gold); background: #fff8e8; color: #5b461d; }
+    .danger { border-left-color: var(--red); background: #fff0f0; color: #673030; }
+    .ok { border-left-color: var(--teal); background: #eaf8f7; color: #174f53; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; }
+    .card { padding: 17px 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .card h3 { margin-top: 0; font-size: 17px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; background: var(--paper); font-size: 14px; }
+    th, td { padding: 10px 12px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #edf3f7; color: #294458; font-weight: 700; }
+    code { padding: 1px 5px; border-radius: 4px; background: #e9eef2; color: #173c54; font-family: Consolas, "Courier New", monospace; font-size: .92em; }
+    pre { overflow-x: auto; margin: 14px 0 20px; padding: 16px 18px; border-radius: 8px; background: var(--code); color: var(--code-ink); box-shadow: 0 6px 18px rgba(23,32,43,.12); }
+    pre code { padding: 0; background: transparent; color: inherit; font-size: 13px; line-height: 1.55; }
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin: 18px 0; }
+    .flow div { position: relative; min-height: 76px; padding: 15px 12px; border: 1px solid #b9d2e3; background: #f7fbfe; color: #194e70; text-align: center; font-size: 13px; }
+    .flow div + div { border-left: 0; }
+    .flow div + div::before { content: "→"; position: absolute; left: -13px; top: 24px; z-index: 2; color: var(--teal); font-size: 20px; font-weight: 700; }
+    .small { color: var(--muted); font-size: 13px; }
+    .path { color: #173c54; font-family: Consolas, "Courier New", monospace; font-size: .92em; }
+    details { margin: 12px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    summary { cursor: pointer; padding: 10px 14px; color: #234e6a; font-weight: 700; }
+    details > div { padding: 0 14px 12px; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 5px 0; }
+    .footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    @media (max-width: 850px) {
+      .layout { display: block; }
+      aside { position: static; height: auto; }
+      nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 7px; }
+      nav .group { grid-column: 1 / -1; }
+      main { padding: 20px 16px 50px; }
+      .hero { padding: 25px 22px; }
+      .flow { grid-template-columns: 1fr; gap: 0; }
+      .flow div + div { border-left: 1px solid #b9d2e3; border-top: 0; }
+      .flow div + div::before { content: "↓"; left: 50%; top: -17px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <h1>ESP32-S3 智能桌面终端</h1>
+    <p>项目工程总说明 · 2026-10-07</p>
+    <nav>
+      <div class="group">项目</div>
+      <a href="#overview">项目概览</a>
+      <a href="#tree">工程结构</a>
+      <a href="#architecture">运行架构</a>
+      <div class="group">代码</div>
+      <a href="#modules">模块说明</a>
+      <a href="#ui">UI 应用</a>
+      <a href="#audio">音乐与音频</a>
+      <a href="#ai">AI 与服务器</a>
+      <a href="#display">显示与防撕裂</a>
+      <div class="group">资源</div>
+      <a href="#sd">SD 卡目录</a>
+      <a href="#scripts">转换脚本</a>
+      <a href="#build">编译烧录</a>
+      <div class="group">维护</div>
+      <a href="#problems">问题与处理</a>
+      <a href="#checklist">交付检查</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="hero" id="overview">
+      <p class="eyebrow">PROJECT GUIDE / ESP32-S3 + LVGL 8.3.1</p>
+      <h1>智能桌面终端项目文档</h1>
+      <p class="lead">本项目是一个运行在 ESP32-S3 上的 480×480 LVGL 桌面终端，集成天气、时钟、日历、音乐、照片、视频、2048、陀螺仪平衡游戏、拼音输入和 AI 助手。大字体、图标、壁纸、拼音词典、音乐和视频放在 SD 卡，固件负责驱动、任务调度和应用逻辑。</p>
+      <div class="meta">
+        <span class="tag">ESP32-S3</span><span class="tag">Arduino + PlatformIO</span><span class="tag">LVGL 8.3.1</span><span class="tag">8 MB PSRAM</span><span class="tag">16 MB Flash</span><span class="tag">480×480 RGB</span>
+      </div>
+      <div class="notice"><strong>工程范围：</strong>v1.5 新增设备信息与文字浏览器，并包含设备端固件、资源转换与串口上传工具，以及从线上读取的 AI 服务器源码。后台源码和部署配置位于 <a href="../server/README.md">server/</a>；真实密钥和 PM2 私有环境转储仅保存在本机忽略目录。该备份随 v1.4 发布，尚未重新部署。从空机器重建和完整 AI 链路留作后续验证，目前仍未完成。</div>
+    </section>
+
+    <section id="tree">
+      <div class="notice"><strong>部署入口：</strong>当前版本为 <code>v1.5</code>（2026-10-08），新增设备信息和 HTTP/HTTPS 文字浏览器，继承串口素材上传、视频音频和 LRC 原样上传。<code>main</code> 与 <code>v1.5</code> 标签对应本次发布，旧版本标签保持不变。获取源码使用 <code>git clone --branch v1.5</code>。Git 源码不含 EXE 和 SD 素材；<a href="https://github.com/banli12345/ESP32SmartVoiceBox-public">v1.5 Release</a> 提供新固件包，上位机未修改，复用 <a href="https://github.com/banli12345/ESP32SmartVoiceBox-public">v1.4 Release</a> 的上位机包。平台配置、硬件接线和素材转换见 <a href="GETTING_STARTED.md">部署指南</a>，浏览器用法见 <a href="text-browser.md">文字浏览器</a>，发布说明见 <a href="RELEASE_V1.5.md">v1.5 发布说明</a>。文字浏览器不能执行 JavaScript 或操作网页表单。</div>
+      <h2>工程结构</h2>
+      <table>
+        <thead><tr><th>路径</th><th>职责</th><th>维护要点</th></tr></thead>
+        <tbody>
+          <tr><td class="path">platformio.ini</td><td>板卡、框架、库、编译宏、源码过滤和 Flash/PSRAM 配置。</td><td>修改引脚、库版本或编译选项时先从这里确认。</td></tr>
+          <tr><td class="path">src/main.cpp</td><td>启动编排、RGB 双帧缓冲、LVGL flush、触摸、MPU6050、FPS 与任务入口。</td><td>显示 DMA 帧边界同步和 I2C 互斥在此维护。</td></tr>
+          <tr><td class="path">src/Sound.cpp/.h</td><td>I2S、MAX98357A 功放、音乐播放/切歌/循环、闹铃、音量和 AI 语音输出。</td><td>所有 I2S 通道状态只在此模块维护，AI 只调用公开的 PCM 输出接口。</td></tr>
+          <tr><td class="path">src/SerialUpload.cpp/.h</td><td>串口 SD 素材接收、校验、整批提交和中断恢复。</td><td>进入上传模式会重启，接收过程在字体、UI、音频和网络任务启动之前执行。</td></tr>
+          <tr><td class="path">tools/sd_uploader/</td><td>Windows 中文上位机，素材队列、转换、导出、串口上传与取消。</td><td>复用图片和视频转换格式，MP3 转规范 PCM WAV，视频画面和音轨整批提交。</td></tr>
+          <tr><td class="path">src/Web_ai.cpp/.h</td><td>HTTP/WebSocket AI 对话、天气/音乐/音量命令、服务器 WAV 解析。</td><td>AI 语音播放前后通过 <code>Sound</code> 接口暂停和恢复音乐。</td></tr>
+          <tr><td class="path">src/setwifi.cpp / setwifi.h</td><td>WiFi 凭据、NTP、心知天气当前天气和三日预报、NVS 离线缓存。</td><td>API 密钥和默认凭据应替换为部署环境的安全配置。</td></tr>
+          <tr><td class="path">src/MPU6050_ESP32.*</td><td>保留的传感器参考模块。</td><td>当前运行路径为 <code>main.cpp</code> 中的 <code>mpu_init()</code>、<code>mpu_update()</code> 和 <code>sensor_task()</code>。</td></tr>
+          <tr><td class="path">src/ui/custom/custom.c/.h</td><td>主要 LVGL 页面、按钮回调、游戏、键盘、音乐页面和设置页。</td><td>C 文件通过 <code>extern</code> 调用 C++ 设备接口。</td></tr>
+          <tr><td class="path">src/ui/generated/</td><td>GUI Guider 生成的基础页面、图片和字体。</td><td>生成文件尽量不手改；业务交互放在 <code>custom.c</code>。</td></tr>
+          <tr><td class="path">scripts/</td><td>全部资源转换脚本及 Python 依赖清单。</td><td>从项目根目录运行；生成资源默认进入 <code>sd_card_files/</code>。</td></tr>
+          <tr><td class="path">server/</td><td>Node.js HTTP/WebSocket、AI 网页、edge-tts 脚本、环境变量与 PM2 配置模板、线上 systemd unit 参考。</td><td>部署路径为 <code>/srv/esp32-smart-voice-box</code>；完整步骤见 <a href="../server/README.md">服务器说明</a>。</td></tr>
+          <tr><td class="path">font_assets/</td><td>常用汉字、城市名称等字体字符来源。</td><td>修改字符范围后重新生成对应 BIN。</td></tr>
+          <tr><td class="path">sd_card_files/</td><td>本地生成的运行资源，Git 不包含该目录。</td><td>自行准备素材并生成，复制内部目录到 SD 卡根目录。</td></tr>
+          <tr><td class="path">.tools/</td><td>本机工具目录，Git 不包含该目录。</td><td>字体脚本依赖其中的指定 Node.js 路径，需要另行配置。</td></tr>
+        </tbody>
+      </table>
+      <div class="notice danger"><strong>敏感信息：</strong><code>src/setwifi.cpp</code> 当前包含默认 WiFi 和天气 API 配置。发布工程前应改为设备配网写入 NVS，或至少替换示例值并避免把真实密钥提交到公共仓库。</div>
+    </section>
+
+    <section id="architecture">
+      <h2>运行架构</h2>
+      <div class="flow">
+        <div><strong>setup()</strong><br>屏幕、SD、字体、I2C、音频</div>
+        <div><strong>LVGLTask</strong><br>界面、定时器、网络恢复</div>
+        <div><strong>SensorTask</strong><br>触摸与 MPU6050</div>
+        <div><strong>MusicTask</strong><br>SD WAV → I2S0</div>
+        <div><strong>AI/WebSocket</strong><br>网络语音 → I2S1</div>
+      </div>
+      <p>启动入口在 <code>src/main.cpp</code> 的 <code>setup()</code>。先恢复缓存、初始化 RGB 屏幕和 SD，再初始化触摸、LVGL、字体与壁纸缓存，创建 UI 并发布 SD 状态；随后初始化音频、AI、MPU6050 与 WiFi 服务，启动 LVGL 和传感器任务。</p>
+      <h3>任务边界</h3>
+      <table>
+        <thead><tr><th>任务/线程</th><th>主要工作</th><th>同步原则</th></tr></thead>
+        <tbody>
+          <tr><td><code>LVGLTask</code></td><td>每 5 ms 执行 <code>lv_timer_handler()</code>，处理页面切换、网络重连和 UI 更新。</td><td>LVGL 对象只在该任务或 LVGL 回调上下文修改。</td></tr>
+          <tr><td><code>SensorTask</code></td><td>每 20 ms 读取触摸；设备可用时读取 MPU6050。</td><td>触摸和 MPU6050 共用 <code>i2c_mutex</code>。</td></tr>
+          <tr><td><code>MusicAudioTask</code></td><td>读取 SD 上的 PCM WAV，控制播放、暂停、切歌、循环模式和闹铃。</td><td>只有音频任务直接操作音乐 I2S 通道。</td></tr>
+          <tr><td><code>AIChatTask</code></td><td>提交普通问答、天气和音量命令，接收服务器 JSON，再请求 <code>Sound</code> 播放 TTS。</td><td><code>Sound</code> 内的 <code>ai_audio_mutex</code> 防止同时播放两条 AI 语音。</td></tr>
+          <tr><td><code>AIWebSocketTask</code></td><td>维持 <code>/esp32</code> WebSocket 连接并处理服务器推送。</td><td>音频通过 <code>Sound</code> 的 <code>sound_ai_output_*</code> 接口输出。</td></tr>
+        </tbody>
+      </table>
+      <h3>启动顺序</h3>
+      <ol>
+        <li>恢复时间、天气与壁纸选择，注册帧完成和 VSYNC 回调，初始化 RGB 面板并读取双帧缓冲地址。</li>
+        <li>释放 LCD 软件 SPI 与 SD 共用的引脚，挂载 SD_MMC 1-bit 模式。</li>
+        <li>配置背光、I2C 互斥与触摸；初始化 LVGL、SD 字体和壁纸缓存。</li>
+        <li>注册显示和输入设备，创建 UI、加载图标与词典，并发布 SD 状态。</li>
+        <li>初始化音频和 AI 任务、MPU6050 与 WiFi 服务。</li>
+        <li>启动 LVGL 和传感器任务；联网后同步北京时间并获取天气和三日预报。</li>
+      </ol>
+    </section>
+
+    <section id="modules">
+      <h2>模块说明</h2>
+      <div class="grid">
+        <article class="card"><h3>显示与 LVGL</h3><p><code>main.cpp</code> 创建 <code>Arduino_ESP32RGBPanel</code> 和 <code>Arduino_RGB_Display</code>。LVGL 使用 16 位颜色，屏幕尺寸为 480×480，RGB PCLK 为 10 MHz，DMA bounce 行数为 20。</p></article>
+        <article class="card"><h3>SD_MMC 与 LVGL FS</h3><p>GPIO48/47/41 连接 SD 时钟、命令和 D0，GPIO42 作为 DAT2/TF 控制线。挂载成功后通过 LVGL 文件系统字母 <code>S:</code> 访问资源。</p></article>
+        <article class="card"><h3>字体加载</h3><p><code>/fonts/chinese_16.bin</code>、<code>chinese_20.bin</code>、<code>chinese_32.bin</code> 从 SD 加载；失败时 20px 字体回退到固件内置字体。</p></article>
+        <article class="card"><h3>网络与缓存</h3><p><code>setwifi.cpp</code> 使用 Preferences 保存 WiFi、城市、天气和时间缓存。断网时仍显示最近一次有效天气和时钟。</p></article>
+        <article class="card"><h3>传感器</h3><p>MPU6050 使用加速度和陀螺仪融合计算 roll、pitch、yaw；UI 和平衡游戏使用相对角度，陀螺仪温度显示在主界面和陀螺仪页。</p></article>
+        <article class="card"><h3>背光与音量</h3><p>背光通过 LEDC PWM 控制；音量保存到 Preferences 的 <code>audio/volume</code>，PCM 输出按曲线缩放，低音量比线性缩放更安静。</p></article>
+      </div>
+      <h3>设备端公开接口</h3>
+      <p>这些接口在 <code>custom.c</code> 中通过 <code>extern</code> 使用，修改名字或参数时需要同步 C/C++ 声明：</p>
+      <pre><code>music_audio_play();             // 播放或继续当前歌曲
+music_audio_pause();            // 暂停并保留文件位置
+music_audio_stop();              // 停止并关闭当前文件
+music_select_track(index);       // 请求切换歌曲
+set_music_play_mode(mode);       // 单曲、循环歌单、顺序歌单
+ai_chat_submit(message);         // 提交 AI 问题
+get_audio_volume();              // 读取音量
+set_audio_volume(percent);       // 设置音量
+start_photo_load(path);          // 异步读取照片
+read_next_video_frame();         // 读取下一帧 RVF 视频</code></pre>
+      <h3>代码阅读入口</h3>
+      <table>
+        <thead><tr><th>模块</th><th>源码入口</th><th>优先阅读的函数</th></tr></thead>
+        <tbody>
+          <tr><td>设备主控</td><td><a href="../src/main.cpp">src/main.cpp</a></td><td><code>setup()</code> 和模块初始化编排。</td></tr>
+          <tr><td>显示/LVGL</td><td><a href="../src/main.cpp">src/main.cpp</a></td><td><code>setup()</code>、<code>my_disp_flush()</code>、<code>lvgl_task()</code>、<code>sensor_task()</code>。</td></tr>
+          <tr><td>SD 资源</td><td><a href="../src/SDcar.cpp">src/SDcar.cpp</a>、<a href="../src/SDcar.h">SDcar.h</a></td><td><code>sdcar_init()</code>、字体、图标、壁纸、照片、视频、音乐 WAV、LVGL 文件系统和拼音词典。</td></tr>
+          <tr><td>音频输出</td><td><a href="../src/Sound.cpp">src/Sound.cpp</a>, <a href="../src/Sound.h">Sound.h</a></td><td><code>sound_init()</code>、<code>music_audio_task()</code>、<code>sound_ai_output_*</code>；音乐和 AI 的 I2S 状态集中在此。</td></tr>
+          <tr><td>AI 网络</td><td><a href="../src/Web_ai.cpp">src/Web_ai.cpp</a>, <a href="../src/Web_ai.h">Web_ai.h</a></td><td><code>web_ai_init()</code>、<code>ai_chat_submit()</code>、WebSocket 事件和 TTS WAV 处理。</td></tr>
+          <tr><td>网络/天气</td><td><a href="../src/setwifi.cpp">src/setwifi.cpp</a>、<a href="../src/setwifi.h">src/setwifi.h</a></td><td><code>connectWiFi()</code>、<code>fetchWeatherData()</code>、<code>fetchWeatherForecast()</code>、缓存函数。</td></tr>
+          <tr><td>自定义 UI</td><td><a href="../src/ui/custom/custom.c">src/ui/custom/custom.c</a>、<a href="../src/ui/custom/custom.h">custom.h</a></td><td><code>create_*_screen()</code>、各页面事件回调、<code>game_move()</code>、<code>balance_game_update_timer_cb()</code>。</td></tr>
+          <tr><td>资源生成</td><td><a href="../scripts/">scripts/</a>、<a href="../font_assets/">font_assets/</a></td><td>字体、词典、图标、视频和歌词转换脚本。</td></tr>
+          <tr><td>SD 素材准备</td><td><a href="GETTING_STARTED.md">部署与转换指南</a></td><td>资源不随 Git 下载，按指南生成后复制到 SD 卡。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ui">
+      <h2>UI 应用与交互</h2>
+      <p>主要页面都在 <code>src/ui/custom/custom.c</code> 中创建。GUI Guider 生成的页面只提供基础对象，业务回调和动态数据由 custom 层维护。</p>
+      <table>
+        <thead><tr><th>应用</th><th>核心函数/变量</th><th>功能</th></tr></thead>
+        <tbody>
+          <tr><td>主界面</td><td><code>setup_ui()</code>、时间/天气更新回调</td><td>数字时钟、日期、天气图标和温度、WiFi/音量状态、陀螺仪温度图标。</td></tr>
+          <tr><td>设置</td><td><code>create_settings_screen()</code></td><td>WiFi、亮度、音量、壁纸入口；WiFi 和音量使用无黑框图标按钮。</td></tr>
+          <tr><td>天气</td><td><code>setup_weather_page()</code>、<code>refresh_weather_page()</code></td><td>当前天气和三日预报，支持修改城市。</td></tr>
+          <tr><td>时钟/闹铃</td><td><code>create_clock_screen()</code>、<code>play_alarm_wav()</code></td><td>设置时间和开关，闹铃播放 <code>/music/alarm.wav</code>。</td></tr>
+          <tr><td>音乐</td><td><code>create_music_screen()</code></td><td>唱片、歌名、歌词、播放/暂停、上一首、NEXT 和三种播放模式。</td></tr>
+          <tr><td>AI 助手</td><td><code>create_keyboard_screen()</code>、<code>ai_chat_send_cb()</code></td><td>中文拼音键盘、候选词、普通问答、天气问答、音量和音乐控制。</td></tr>
+          <tr><td>照片/视频</td><td><code>photo_render_gallery()</code>、<code>video_render_gallery()</code></td><td>扫描 SD 卡文件；照片异步加载，视频按 RVF 帧定时播放。同目录、同主文件名的 WAV 是该视频的配套音轨。</td></tr>
+          <tr><td>2048</td><td><code>game_move()</code>、<code>game_update_tiles()</code></td><td>4×4 滑动合并，米白色主题，方块数值越大颜色越深，分数居中。</td></tr>
+          <tr><td>陀螺仪平衡游戏</td><td><code>create_balance_game_screen()</code></td><td>平面桌面、洞口和小球，使用 roll/pitch 相对角度控制小球进入洞口得分。</td></tr>
+          <tr><td>日历</td><td><code>calendar_build_grid()</code>、<code>calendar_render_month()</code></td><td>月视图、左右滑动切换月份。</td></tr>
+        </tbody>
+      </table>
+      <h3>拼音键盘</h3>
+      <p>键盘显示时，输入框点击/获得焦点会调用 <code>show_text_keyboard()</code>，候选栏放在键盘上方，避免遮挡第一排字母。主词典来自 SD 的 <code>/ime/pinyin_full.txt</code>；缺失时使用 <code>custom.c</code> 中的小型备用词典。</p>
+      <p>词典生成顺序是“常用简体字优先，再补充 GB2312 汉字”。脚本为单字母初始声母保留 a-z 行，并显式生成 <code>h</code> 行，解决“h 没有候选字”和“p 匹配到不合理字符”的问题。</p>
+    </section>
+
+    <section id="audio">
+      <h2>音乐、闹铃与 AI 音频</h2>
+      <h3>音乐播放</h3>
+      <p>音乐文件由 <code>sdcar_scan_music_tracks()</code> 扫描 <code>/music</code> 下的 WAV 文件。当前实现要求 PCM、双声道、16 bit WAV；歌词文件使用相同基础名的 <code>.lrc</code>。例如 <code>晴天.wav</code> 对应 <code>晴天.lrc</code>。</p>
+      <table>
+        <thead><tr><th>模式</th><th>行为</th></tr></thead>
+        <tbody>
+          <tr><td>单曲循环</td><td>当前歌曲读完后从头打开同一文件。</td></tr>
+          <tr><td>循环歌单</td><td>当前歌曲结束后切到下一首，最后一首回到第一首。</td></tr>
+          <tr><td>顺序播放歌单</td><td>从当前歌曲播放到歌单最后一首后停止。</td></tr>
+        </tbody>
+      </table>
+      <h3>AI 语音与音乐互斥</h3>
+      <p>音乐使用 <code>I2S_NUM_0</code>，AI 使用 <code>I2S_NUM_1</code>，两者共用 GPIO1（BCLK）、GPIO2（LRCLK）、GPIO40（DOUT）。AI 播放前，音乐任务写入静音并禁用 I2S0；AI 播放结束后禁用 I2S1，并通过 <code>i2s_channel_reconfig_std_gpio()</code> 将引脚路由恢复到 I2S0，然后恢复音乐任务。</p>
+      <pre><code>音乐：SD WAV → Sound::MusicAudioTask → I2S0 → GPIO1/2/40
+AI：HTTP WAV → Web_ai::play_ai_wav() → Sound::sound_ai_output_* → I2S1 → GPIO1/2/40
+切换：暂停音乐 → 释放 I2S0 → 播放 AI → 关闭 I2S1
+      → 恢复 I2S0 GPIO 路由 → 继续音乐</code></pre>
+      <div class="notice ok"><strong>维护要点：</strong>不要在 UI 回调里直接启停 I2S。使用 <code>music_audio_play/pause/stop()</code>，让 <code>MusicAudioTask</code> 统一处理文件、静音、通道状态和切歌竞态。</div>
+    </section>
+
+    <section id="ai">
+      <h2>AI 与服务器协议</h2>
+      <h3>普通问答 HTTP</h3>
+      <p>设备端地址写在 <code>src/Web_ai.cpp</code>：<code>http://YOUR_SERVER_HOST:3000/api/chat</code>。请求为 JSON，当前只发送 <code>message</code> 字段。</p>
+      <pre><code>POST /api/chat
+Content-Type: application/json
+
+{"message":"请回答用户的问题"}</code></pre>
+      <p>期望的返回格式：</p>
+      <pre><code>{
+  "ok": true,
+  "text": "回答文本",
+  "audio_url": "http://服务器地址/生成的语音.wav"
+}</code></pre>
+      <p><code>audio_url</code> 为空时只显示文字；有值时设备下载 WAV 并播放。TTS WAV 必须是 16 kHz、单声道、16 bit、PCM；设备会把单声道样本复制成双声道送入功放。</p>
+      <h3>WebSocket 推送</h3>
+      <p>设备通过 <code>WebSocketsClient</code> 连接 <code>YOUR_SERVER_HOST:3000/esp32</code>。服务器推送 JSON 类型为 <code>ai_reply</code>：</p>
+      <pre><code>{
+  "type": "ai_reply",
+  "question": "用户原问题",
+  "text": "回答文本",
+  "audio_url": "http://服务器地址/生成的语音.wav"
+}</code></pre>
+      <p>设备收到后先识别本地音乐、音量和天气命令，再决定是否播放语音。音乐命令本地执行，因此“关闭音乐”“播放第二首”“下一首”等不依赖服务器意图识别。</p>
+      <h3>天气服务</h3>
+      <p><code>src/setwifi.cpp</code> 调用心知天气：</p>
+      <pre><code>GET http://api.seniverse.com/v3/weather/now.json
+GET http://api.seniverse.com/v3/weather/daily.json?days=3</code></pre>
+      <p>城市使用拼音请求，例如 <code>nanning</code>；设备通过本地城市表显示中文名。NTP 使用 <code>ntp.aliyun.com</code>、<code>ntp.ntsc.ac.cn</code> 和 <code>pool.ntp.org</code>，时区为 UTC+8。</p>
+      <div class="notice danger"><strong>服务器部署要求：</strong>服务器必须让设备可访问 API 和 WAV 文件 URL；如果 WAV URL 需要登录、HTTPS 证书链不受设备信任、响应不是 PCM WAV，设备端会显示文本但语音播放失败。<code>server/server.mjs</code> 使用 DeepSeek、edge-tts 和 FFmpeg 生成 16 kHz 单声道 PCM16 WAV，并在成功后向 <code>/esp32</code> 广播回复。健康检查为 <code>GET /api/health</code>；环境变量、实际部署配置和备份范围见 <a href="../server/README.md">服务器说明</a>。</div>
+    </section>
+
+    <section id="display">
+      <h2>显示、PSRAM 与防撕裂</h2>
+      <p>RGB 屏幕持续由 DMA 扫描帧缓冲，LVGL 也会写入画面。如果两者同时访问同一块 PSRAM 帧缓冲，就会出现画面抖动、错乱或撕裂。</p>
+      <p>当前方案在 <code>main.cpp</code> 中获取 RGB 驱动的两个 framebuffer，注册 <code>on_frame_buf_complete</code> 回调，用帧完成计数等待 DMA 结束后再允许 LVGL 重用对应缓冲。<code>my_disp_flush()</code> 提交区域后等待下一次帧完成，避免 LVGL 覆盖正在扫描的内存。</p>
+      <pre><code>LVGL 绘制 → 提交到空闲 framebuffer
+RGB DMA 扫描 → 当前 framebuffer
+帧完成回调 → 计数加一
+LVGL flush 等待计数变化 → 才继续复用缓冲</code></pre>
+      <p>照片和视频还使用额外的 PSRAM/缓冲策略：照片异步加载，视频先读下一帧到独立缓冲，再在 VSYNC 定时下更新图像。视频播放期间暂停 MPU6050 轮询，减少 I2C 和调度干扰。</p>
+      <h3>内存诊断</h3>
+      <p>启动日志中的 <code>LVGL heap after fonts</code>、<code>LVGL heap after UI</code> 和 <code>PSRAM</code> 行用于判断字体、图标和帧缓冲分配是否过量。大字体、图标和拼音字典优先放 PSRAM；失败时必须有明确回退或停止加载，不能继续解引用空指针。</p>
+    </section>
+
+    <section id="sd">
+      <h2>SD 卡目录与运行资源</h2>
+      <p>将 <code>sd_card_files</code> 下的内容复制到 SD 卡根目录。不要把 <code>sd_card_files</code> 这一层目录本身再套一层。</p>
+      <pre><code>SD 卡根目录/
+├─ fonts/
+│  ├─ chinese_16.bin
+│  ├─ chinese_20.bin
+│  └─ chinese_32.bin
+├─ ime/pinyin_full.txt
+├─ icons/
+│  ├─ music.bin  settings.bin  weather.bin  clock.bin
+│  ├─ photos.bin browser.bin video.bin calendar.bin
+│  └─ ai_assistant.bin
+├─ wallpapers/wallpaper1.bin wallpaper2.bin wallpaper3.bin
+├─ imges/image1.bin image2.bin
+├─ videos/
+│  ├─ demo.rvf
+│  └─ demo.wav
+└─ music/
+   ├─ alarm.wav
+   ├─ 歌名.wav
+   └─ 歌名.lrc</code></pre>
+      <table>
+        <thead><tr><th>资源</th><th>格式/要求</th><th>设备行为</th></tr></thead>
+        <tbody>
+          <tr><td>字体</td><td>LVGL v8 BIN，16/20/32 px。</td><td>启动时验证文件和测试字形，20px 失败回退内置字体。</td></tr>
+          <tr><td>图标</td><td>64×64 LVGL TRUE_COLOR_ALPHA BIN。</td><td>启动时读入 RAM，APP 页直接使用。</td></tr>
+          <tr><td>壁纸</td><td>480×480 LVGL BIN。</td><td>启动时注册 SD 文件系统，按选择加载。</td></tr>
+          <tr><td>照片</td><td>建议 480×450 LVGL BIN，目录名为 <code>/imges</code>。</td><td>打开照片应用时扫描，选择后异步加载。</td></tr>
+          <tr><td>视频</td><td>RVF1，RGB565 little-endian。配套音轨是同目录、同主文件名的 WAV：44100 Hz、立体声、16 bit 有符号小端 PCM，block align 4，byte rate 176400。样本数按 <code>frame_count * 1000 / fps_milli</code> 秒取整。没有 WAV 时仍是无声音视频。</td><td>打开视频应用时扫描 <code>/videos</code> 的 <code>.rvf</code>，按帧播放。RVF 和同名 WAV 一起复制到 SD 卡 <code>/videos</code>。</td></tr>
+          <tr><td>音乐</td><td>PCM WAV；歌词使用同名 LRC。</td><td>启动扫描 <code>/music</code>，支持 32 首以内。</td></tr>
+        </tbody>
+      </table>
+      <p class="small">目录中历史上还存在 <code>sd_card_files/新建文件夹/</code> 备份副本。部署时只复制根目录下的标准 <code>fonts/</code>、<code>ime/</code>、<code>icons/</code>、<code>music/</code> 等目录。</p>
+    </section>
+
+    <section id="scripts">
+      <h2>资源转换脚本</h2>
+      <p>资源转换脚本统一放在 <code>scripts/</code>。请在项目根目录执行命令，这样脚本能找到 <code>font_assets/</code>、当前字库和 <code>sd_card_files/</code>。生成的 BIN、TXT、RVF、WAV 都是 SD 卡资源，不会随固件编译写入 SD 卡。</p>
+      <p>日常素材可用中文图形上位机：双击项目根目录 <code>SDMediaUploader.cmd</code>，或 <code>dist/SDMediaUploader/SDMediaUploader.exe</code>。选择素材类型并添加 PNG/JPG、MP3/LRC 或 MP4，点击“转换并上传”。上位机自动生成对应 SD 文件，壁纸选择 1/2/3 位置，照片保比例转换成 480×450，视频默认 320×240、20 FPS 并同时提取音轨。未连接设备时可用“仅转换并导出”。</p>
+      <p>首次使用先烧录 v1.4 或更新接收固件，关闭其他串口监视器，再选择设备 USB 串口。设备以 115200 握手，重启进入专用上传模式，切到 921600 传输。16 KiB 分块带 CRC32 与应答重试，上传后从 SD 读回校验；整批完成才替换原文件，并重启加载缓存。每批最多 32 个输出文件，完整 SD 路径最多 63 个 UTF-8 字节。大视频受串口带宽限制，需要等待上传进度完成。打包程序需保留整个目录中的 <code>_internal</code>。</p>
+      <h3>准备环境</h3>
+      <ol>
+        <li>安装 Python 3.9 或更新版本，然后安装脚本依赖：<code>py -3 -m pip install -r scripts/requirements.txt</code>。</li>
+        <li>字库脚本还需要源 <code>simhei.ttf</code>、对应的原有 BIN，以及 Node.js 24.21.0。Windows 版解压到 <code>.tools/node-v24.21.0-win-x64/</code>，确保其中有 <code>node.exe</code> 和 <code>node_modules/npm/bin/npx-cli.js</code>。这些文件不随 Git 提供；第一次运行会通过网络下载 <code>lv_font_conv</code>。</li>
+        <li>视频转换可使用系统 PATH 中的 <code>ffmpeg</code>；如果没有，已安装的 <code>imageio-ffmpeg</code> 会提供备用 FFmpeg。音轨探测只用这个 ffmpeg，不需要单独的 ffprobe。</li>
+      </ol>
+      <h3>常用命令</h3>
+      <pre><code># 从项目根目录执行
+py -3 -m pip install -r scripts/requirements.txt
+
+# 生成 SD 拼音词典：常用简体字优先，并补充 GB2312 汉字
+py -3 scripts/generate_pinyin_dict.py
+
+# 生成含 GB2312 汉字的完整 20px 字库（保留已有字形）
+py -3 scripts/generate_gb2312_font.py
+
+# 为 20px 字库增加应用中出现的新字，也可读取 UTF-8 字符清单
+py -3 scripts/update_chinese20_font.py "天气音乐设置"
+py -3 scripts/update_chinese20_font.py --text-file font_assets/common_3500.txt
+
+# 根据城市名字符清单重建 32px 字库，并保留原字形
+py -3 scripts/update_chinese32_city_font.py
+
+# 批量转换图标、壁纸和照片；默认源目录是 assets/icon_sources/
+py -3 scripts/convert_app_icons.py --source-dir "D:\资源\图标"
+
+# 单独转换一个透明图标，输出到 sd_card_files/icons/gyro.bin
+py -3 scripts/convert_app_icons.py --icon "D:\资源\gyro.webp" --name gyro --size 64
+
+# MP4 转 RVF，默认 320×240、10 FPS，并默认提取同名 WAV
+py -3 scripts/convert_video.py "D:\视频\demo.mp4"
+
+# 指定尺寸和帧率。宽高必须是 1..480，帧率必须是 1..30
+py -3 scripts/convert_video.py "D:\视频\demo.mp4" --width 320 --height 240 --fps 20
+
+# 只生成无声 RVF，并删除同名旧 WAV，避免旧音轨配新视频
+py -3 scripts/convert_video.py "D:\视频\demo.mp4" --no-audio
+
+# 已有 RVF 不重编码画面，只按它的帧数和帧率生成配套 WAV
+py -3 scripts/convert_video.py "D:\视频\demo.mp4" --audio-only --output sd_card_files/videos/demo.rvf
+
+# 歌词整体提前 800 ms（直接改写 LRC，操作前先备份）
+py -3 scripts/shift_lrc.py "sd_card_files/music/晴天.lrc" 800</code></pre>
+      <table>
+        <thead><tr><th>脚本</th><th>作用与输入</th><th>输出</th></tr></thead>
+        <tbody>
+          <tr><td class="path">generate_pinyin_dict.py</td><td><code>font_assets/common_3500.txt</code>、Python <code>pypinyin</code> 和 GB2312 字符集；常用简体字排在候选前面。</td><td><code>sd_card_files/ime/pinyin_full.txt</code></td></tr>
+          <tr><td class="path">generate_gb2312_font.py</td><td><code>simhei.ttf</code>、现有 20px 字库、<code>common_3500.txt</code>、Node.js 与 <code>lv_font_conv</code>。</td><td>重建 <code>sd_card_files/fonts/chinese_20.bin</code>，补入 GB2312 汉字。</td></tr>
+          <tr><td class="path">update_chinese20_font.py</td><td>命令行文字或 UTF-8 文本文件；需要源 TTF、当前 20px BIN 和 Node.js。</td><td>把新字符并入 <code>sd_card_files/fonts/chinese_20.bin</code>，原字形保留。</td></tr>
+          <tr><td class="path">update_chinese32_city_font.py</td><td><code>font_assets/city_names_32.txt</code>、<code>simhei.ttf</code> 和现有 32px BIN。</td><td>更新 <code>sd_card_files/fonts/chinese_32.bin</code>，保留原字形。</td></tr>
+          <tr><td class="path">convert_app_icons.py</td><td>WebP/图片源；批量模式使用 <code>--source-dir</code>，目录内按脚本配置提供图标、壁纸和 <code>图片/</code> 照片。</td><td>LVGL alpha BIN：<code>icons/</code>、<code>wallpapers/</code>、<code>imges/</code>。</td></tr>
+          <tr><td class="path">convert_video.py</td><td>MP4 或 FFmpeg 可读视频；可指定输出尺寸和帧率。默认提取主音轨。<code>--no-audio</code> 只写 RVF。<code>--audio-only</code> 给已有 RVF 补 WAV，不改画面。</td><td>32 字节 RVF1 头的 RGB565 <code>.rvf</code>，以及同主文件名的 PCM16 <code>.wav</code>。默认写入 <code>sd_card_files/videos/</code>。源没有音轨时只留下 RVF。</td></tr>
+          <tr><td class="path">shift_lrc.py</td><td>带 <code>[mm:ss.xx]</code> 时间标签的 UTF-8 LRC，以及毫秒偏移。</td><td>原地平移时间戳；正数让歌词提前，负数让歌词延后。</td></tr>
+        </tbody>
+      </table>
+      <h3>视频音轨</h3>
+      <p><code>convert_video.py</code> 默认把源视频的主音轨提取成和 RVF 同目录、同主文件名的 <code>.wav</code>。例如 <code>/videos/ikun20.rvf</code> 对应 <code>/videos/ikun20.wav</code>。WAV 固定为 44100 Hz、立体声、16 bit 有符号小端 PCM，block align 为 4，byte rate 为 176400。样本数是 RVF 时长 <code>frame_count * 1000 / fps_milli</code> 秒按四舍五入得到的采样帧数，循环时音画时长一致。提取时保留源音轨相对画面第一帧的时间戳，音轨晚于画面开始时，WAV 开头是静音，而不是把第一颗音频样本挪到 0。</p>
+      <p>源文件没有音轨时只生成 RVF。<code>--no-audio</code> 也只生成 RVF，并在新 RVF 写好后删除旁边的同名旧 WAV。<code>--audio-only</code> 先检查已有 RVF 的文件头和帧数据，再按其中的帧数和帧率生成 WAV，不重写画面。它不能和 <code>--no-audio</code> 同时使用。音轨提取失败时，原来的 RVF 保持不变。</p>
+      <p>设备播放同名 WAV 时，以 I2S DMA 已输出的样本作为播放时钟。画面来不及渲染时跳过过期视频帧，保持原视频的播放时长；320×240 源分辨率和现有缩放抗锯齿继续保留。WAV 单独预读到 48 KiB PSRAM 缓冲区，画面仍使用双缓冲 SD 预读。串口 <code>[VIDEO]</code> 的 <code>presented_fps</code> 是实际提交的视频帧率，主界面 FPS 是屏幕刷新率，两者含义不同。</p>
+      <p>打开视频会暂时占用音乐输出，退出后恢复此前播放的音乐。AI 语音和闹铃暂时接管输出时，视频音频时钟暂停，接管结束后从已输出的位置继续。没有 WAV、WAV 格式错误或时长不匹配时，设备记录 <code>[VIDEO AUDIO] error</code> 并继续无声播放；读取失败也会释放音频输出。停止时先等待预读任务完成当前 SD 操作，再关闭文件。</p>
+      <p>转换回归检查：<code>py -3 -m unittest discover -s tests -p test_convert_video.py</code>。固件的 WAV 文件校验与同步调度可在主机上编译 <code>tests/wav_pcm_host_test.c</code> 和 <code>src/wav_pcm.c</code>（头文件目录 <code>src</code>）后运行；包含截断文件、奇数块填充、采样时长取整、过期帧和循环边界检查。</p>
+      <h3>部署生成结果</h3>
+      <p>生成结束后，按输出路径把对应文件复制到 SD 卡根目录下的同名目录，例如 <code>sd_card_files/fonts/chinese_20.bin</code> 复制为 SD 卡的 <code>/fonts/chinese_20.bin</code>，<code>sd_card_files/ime/pinyin_full.txt</code> 复制为 <code>/ime/pinyin_full.txt</code>。图标、壁纸、照片和视频也遵循相同相对路径。视频要把同名 <code>.rvf</code> 和 <code>.wav</code> 一起复制到 SD 卡的 <code>/videos</code>；没有生成 WAV 时只复制 RVF。替换字库前先备份旧 BIN；更新 SD 资源后重启设备验证串口日志中的加载结果。</p>
+      <div class="notice"><code>shift_lrc.py</code> 会直接改写输入歌词，请先复制备份。字体转换会先写入临时 <code>.new</code> 文件，通过校验后再替换原 BIN。</div>
+    </section>
+
+    <section id="build">
+      <h2>编译、烧录与部署</h2>
+      <h3>1. 编译环境</h3>
+      <p>项目使用 PlatformIO 的 <code>esp32-s3-devkitc-1</code> 环境和 LVGL 8.3.1。本机已验证 pioarduino 55.03.312、Arduino-ESP32 3.3.12 与 ESP-IDF 5.5.5；仓库平台来源尚未锁定，新电脑请先按 <a href="GETTING_STARTED.md#编译环境">编译环境指南</a> 配置。<code>platformio.ini</code> 已指定 16 MB Flash、OPI PSRAM、DIO Flash 模式、240 MHz CPU 和 921600 上传速率。</p>
+      <pre><code># 从项目根目录执行
+&amp; "$env:USERPROFILE\.platformio\penv\Scripts\platformio.exe" run
+
+# 清理后全量编译
+&amp; "$env:USERPROFILE\.platformio\penv\Scripts\platformio.exe" run -t clean
+&amp; "$env:USERPROFILE\.platformio\penv\Scripts\platformio.exe" run
+
+# 编译并上传
+&amp; "$env:USERPROFILE\.platformio\penv\Scripts\platformio.exe" run -t upload
+
+# 115200 波特率监视器
+&amp; "$env:USERPROFILE\.platformio\penv\Scripts\platformio.exe" device monitor -b 115200</code></pre>
+      <h3>2. 固件文件</h3>
+      <table>
+        <thead><tr><th>文件</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td class="path">.pio/build/esp32-s3-devkitc-1/firmware.bin</td><td>应用固件，常规 PlatformIO 上传使用。</td></tr>
+          <tr><td class="path">.pio/build/esp32-s3-devkitc-1/firmware.factory.bin</td><td>包含 bootloader、分区表和应用的合并镜像，适合整片首次烧录。</td></tr>
+          <tr><td class="path">partitions.csv</td><td>仓库保留的分区定义；当前 platformio.ini 未通过 board_build.partitions 指定使用，以实际构建分区表为准。</td></tr>
+        </tbody>
+      </table>
+      <h3>3. SD 卡部署</h3>
+      <ol>
+        <li>格式化为设备支持的 FAT 文件系统，建议先使用可靠的 SDHC/SDXC 卡测试。</li>
+        <li>将 <code>sd_card_files</code> 根目录内容复制到 SD 卡根目录。</li>
+        <li>确认串口出现 <code>SD_MMC: initialization complete</code>。</li>
+        <li>确认字体、图标和拼音日志显示 <code>loaded</code>，例如 <code>Pinyin dictionary: loaded ... groups</code>。</li>
+        <li>音乐额外复制到 <code>/music</code>，歌曲和歌词使用相同基础文件名。</li>
+      </ol>
+      <h3>4. 首次启动检查</h3>
+      <pre><code>SD_MMC: initialization complete
+Chinese font: /fonts/chinese_20.bin loaded
+Pinyin dictionary: loaded ... groups, ... bytes from SD
+RGB double framebuffer: enabled
+Setup complete!</code></pre>
+    </section>
+
+    <section id="problems">
+      <h2>开发中遇到的问题与处理</h2>
+      <table>
+        <thead><tr><th>现象</th><th>原因</th><th>当前处理</th></tr></thead>
+        <tbody>
+          <tr><td>点击输入框没有键盘</td><td>LVGL textarea 没有正确获得焦点，键盘显示状态也没有随事件处理。</td><td>监听点击、按下和聚焦事件；统一调用 <code>show_text_keyboard()</code>，候选栏位于键盘上方。</td></tr>
+          <tr><td>候选字生僻、拼音不匹配、h 没字</td><td>词典顺序不合理，LVGL K26 对单字母初始输入需要对应行。</td><td>常用 3500 字优先，补全 GB2312，生成 h 行和 a-z 对齐行。</td></tr>
+          <tr><td>大字库加载后 Guru Meditation</td><td>字体、图标、拼音索引和 LVGL 缓冲挤占内部堆，空指针继续使用。</td><td>优先从 PSRAM 分配，加载后验证字形，失败回退；串口打印 LVGL/PSRAM 空间。</td></tr>
+          <tr><td>RGB 屏幕抖动或撕裂</td><td>LVGL 写入 DMA 正在扫描的同一帧缓冲。</td><td>双 framebuffer、帧完成回调、flush 等待 DMA 帧边界；视频使用独立帧缓冲。</td></tr>
+          <tr><td>音乐播放一段时间后停声</td><td>播放/暂停/切歌线程同时操作 I2S，停止清理和下一次播放发生竞态。</td><td>由 MusicAudioTask 独占 I2S；播放请求用临界区保存，停止时写静音再禁用通道。</td></tr>
+          <tr><td>AI 语音后音乐无声</td><td>AI I2S1 把 GPIO1/2/40 路由走后，关闭 I2S1 没有恢复 I2S0 路由。</td><td>AI 前禁用音乐通道，AI 后重配置音乐 GPIO，再恢复音乐。</td></tr>
+          <tr><td>音量调低仍然很响</td><td>线性缩放在低百分比下听感不够安静。</td><td>使用幂函数曲线，低档位衰减更明显；音量保存到 Preferences。</td></tr>
+          <tr><td>关闭音乐后再次播放无声</td><td>停止标志、播放标志和 I2S 通道清理顺序不一致。</td><td>播放请求保留到清理结束，任务完成静音和 disable 后再重新唤醒。</td></tr>
+          <tr><td>WiFi 恢复后天气不更新</td><td>旧逻辑只在 setup 阶段获取天气。</td><td>LVGLTask 检测断开到连接的边沿，重新同步 NTP、当前天气和预报。</td></tr>
+          <tr><td>视频播放时画面错乱</td><td>SD 读取和 RGB DMA 同时修改图像源，I2C 传感器轮询也增加调度压力。</td><td>下一帧先读入独立缓冲，按 VSYNC 更新；视频期间暂停 MPU6050 读取。</td></tr>
+          <tr><td>歌词显示提前或滞后</td><td>LRC 时间戳与音频实际起点不一致。</td><td>使用 <code>shift_lrc.py</code> 平移时间，设备也支持 LRC <code>[offset:]</code>。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="checklist">
+      <h2>交付检查</h2>
+      <div class="grid">
+        <article class="card"><h3>编译</h3><p>PlatformIO 全量编译成功；确认没有新增 error，检查 Flash/RAM 使用率。</p></article>
+        <article class="card"><h3>启动</h3><p>SD、字体、图标、拼音、RGB 双缓冲和 Setup complete 日志正常。</p></article>
+        <article class="card"><h3>输入</h3><p>AI 输入框能弹键盘；a-z、h、常用拼音和候选词均可输入。</p></article>
+        <article class="card"><h3>音频</h3><p>播放、暂停、NEXT、三种循环模式、闹铃、AI 语音和 AI 后恢复音乐。</p></article>
+        <article class="card"><h3>网络</h3><p>首次连接、切换 WiFi、断线恢复、NTP、天气当前值和三日预报。</p></article>
+        <article class="card"><h3>显示</h3><p>连续刷新、切换页面、播放视频和连接 WiFi。轻微整屏明暗闪动与 v1.3 相同，尚无原因结论；本次屏幕与 Wi-Fi 配置不含实验修改。</p></article>
+        <article class="card"><h3>传感器</h3><p>陀螺仪温度、roll/pitch 方向、平衡游戏相对角度和触摸操作。</p></article>
+        <article class="card"><h3>媒体</h3><p>照片异步加载、视频 RVF 和同名 WAV、音乐同名 LRC 和 SD 热插拔后的错误提示。</p></article>
+      </div>
+      <h3>建议保留的串口日志</h3>
+      <pre><code>LVGL heap after fonts: ...
+PSRAM: total=... free=...
+RGB double framebuffer: enabled
+SD_MMC: initialization complete
+Music: found ... WAV track(s)
+AI I2S ...
+Music I2S GPIO routed back to I2S0
+Music resumed after AI voice playback</code></pre>
+      <p>如果音频或显示异常，优先保存从上电到故障发生的完整串口日志，并同时记录 SD 卡文件列表、当前页面和操作顺序。</p>
+    </section>
+
+    <div class="footer">
+      文档文件：<span class="path">docs/PROJECT_GUIDE.html</span> · 对应工程：<span class="path">ESP32Core/esp32S3lvgl</span> · 生成日期：2026-10-07
+    </div>
+  </main>
+</div>
+</body>
+</html>
+
+

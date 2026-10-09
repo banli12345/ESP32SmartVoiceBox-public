@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI聊天</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#101827,#1c4050);
+      font-family:Arial,"Microsoft YaHei",sans-serif
+    }
+    .chat{
+      width:min(92vw,680px);
+      padding:36px;
+      color:#edf7f6;
+      background:#132335;
+      border:1px solid #397080;
+      border-radius:20px;
+      box-shadow:0 20px 60px #0008
+    }
+    h1{
+      margin:0 0 8px;
+      color:#7ee7da;
+      text-align:center;
+      font-size:34px
+    }
+    .subtitle{
+      margin:0 0 26px;
+      color:#9bb4c5;
+      text-align:center
+    }
+    textarea{
+      width:100%;
+      min-height:140px;
+      padding:15px;
+      color:#edf7f6;
+      background:#0d1a29;
+      border:1px solid #31566d;
+      border-radius:12px;
+      outline:none;
+      font-size:16px;
+      resize:vertical
+    }
+    textarea:focus{
+      border-color:#7ee7da;
+      box-shadow:0 0 0 3px #7ee7da26
+    }
+    button{
+      width:100%;
+      margin-top:16px;
+      padding:14px;
+      color:#10202c;
+      background:linear-gradient(90deg,#7ee7da,#50c9c3);
+      border:0;
+      border-radius:10px;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer
+    }
+    button:hover{background:linear-gradient(90deg,#a0f2e8,#6ee0d8)}
+    button:disabled{opacity:.6;cursor:wait}
+    #status{
+      min-height:24px;
+      color:#f4b860;
+      text-align:center
+    }
+    #answer{
+      min-height:70px;
+      margin-top:14px;
+      padding:16px;
+      color:#eaf7ff;
+      background:#0d1a29;
+      border-left:4px solid #f4b860;
+      border-radius:10px;
+      white-space:pre-wrap;
+      line-height:1.8
+    }
+  </style>
+</head>
+<body>
+  <main class="chat">
+    <h1>AI聊天</h1>
+    <p class="subtitle">你的AI聊天助手</p>
+
+    <textarea id="message" placeholder="来聊聊天吧"></textarea>
+    <button id="send">发送</button>
+
+    <p id="status"></p>
+    <div id="answer">AI</div>
+  </main>
+
+  <script>
+    const message = document.getElementById("message");
+    const send = document.getElementById("send");
+    const status = document.getElementById("status");
+    const answer = document.getElementById("answer");
+
+    send.onclick = async () => {
+      const text = message.value.trim();
+
+      if (!text) {
+        status.textContent = "请输入内容";
+        return;
+      }
+
+      send.disabled = true;
+      status.textContent = "AI 正在回答...";
+      answer.textContent = "";
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({message: text})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || "请求失败");
+        }
+
+        answer.textContent = data.text;
+        status.textContent = "回答完成";
+      } catch (error) {
+        status.textContent = "错误：" + error.message;
+      } finally {
+        send.disabled = false;
+      }
+    };
+
+    message.addEventListener("keydown", event => {
+      if (event.ctrlKey && event.key === "Enter") {
+        send.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
