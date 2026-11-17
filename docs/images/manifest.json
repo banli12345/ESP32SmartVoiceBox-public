@@ -1,0 +1,458 @@
+{
+  "version": "1.26.3",
+  "ui_images": "host/synthetic fixtures; original device video separately identified",
+  "images": [
+    {
+      "file": "ai-cache-speed-long.png",
+      "bytes": 59536,
+      "sha256": "b21fb42515cab4a8b65586516abbdfb4411d9ce85af3a43a1a03c6074bd82d47",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "ai-cache-speed.png",
+      "bytes": 60003,
+      "sha256": "c1d3305381ada398fbad9beee085ff95c3b1e148d0bb02c2baa9f8c77467e605",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "ai-keyboard.png",
+      "bytes": 21983,
+      "sha256": "467d0a660b76acd92c690690ccf3f5a3c97d8917bf90f2448922f46271d28491",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "alarm-options.png",
+      "bytes": 24190,
+      "sha256": "6863cc10f6502240982d60968b0beb19bc05c97032fcdfd632872f0f90a276df",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "alarm-ringing.png",
+      "bytes": 22526,
+      "sha256": "7c8149fa860eeed21ca84a14a3941607bb835cec13ce4c789273b912ca859f90",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "alarm.png",
+      "bytes": 23631,
+      "sha256": "b805d711e8aa6787063e7f9319bbdd34f88aaadec2bd72880ffe245130af03d4",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "apps.png",
+      "bytes": 51017,
+      "sha256": "70b22cf267534a60e7eb9a17ae9def6a7b4960e8bcf6497c1445f76c0b14ec03",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "boot-breeze.gif",
+      "bytes": 485956,
+      "sha256": "86b49eb8d2a93c57a0629f918d6832802928ea6a20c8b5a4c52572e15f3faf66",
+      "width": 480,
+      "height": 480,
+      "frames": 61
+    },
+    {
+      "file": "browser.png",
+      "bytes": 26833,
+      "sha256": "b22706a1367aa1e3637ff9048ec17fa6058b972724c96261052292a55bd8db25",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "calendar.png",
+      "bytes": 25449,
+      "sha256": "55b5c6f6be0d2f4bc0ea53554811345f0b39b656e9b7dca1f456417e711d4980",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "city-ambiguous.png",
+      "bytes": 17741,
+      "sha256": "50616cff0fc9fe0379a430c30249e9005e0df2075e805d832a70b842f65707a3",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; weather_city_ui_host_test"
+    },
+    {
+      "file": "city-input.png",
+      "bytes": 22540,
+      "sha256": "5c2000498f46bd61b890523bd461985025472902c0357156789594d0f79b4229",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; weather_city_ui_host_test"
+    },
+    {
+      "file": "clock.gif",
+      "bytes": 498357,
+      "sha256": "7cc278a5401cfdef8a0f1b5d64f5b65ce53c6be85c361580133c8e9618670e30",
+      "width": 480,
+      "height": 480,
+      "frames": 9
+    },
+    {
+      "file": "depth.gif",
+      "bytes": 281093,
+      "sha256": "91c3cbc495cddd9ae78f63dd488c64d6bb40f36ca1e0755e70fb13c724e1ddd8",
+      "width": 480,
+      "height": 480,
+      "frames": 6
+    },
+    {
+      "file": "drag.png",
+      "bytes": 51946,
+      "sha256": "b8b6a00ea50266dc1d68901498424b8bd055fa3ff2240ebfd9855f48783abe80",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "font-symbols.png",
+      "bytes": 7325,
+      "sha256": "e7a49632496f654398f16da0e6a29fb8be2d1b1fdb96e27f5f0f9a9a9ea9363d",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "games.png",
+      "bytes": 34144,
+      "sha256": "c4176043ed571af9f555a24da2a72ed619403a0f61b61115a5c735bb8c39d315",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "gomoku.png",
+      "bytes": 13161,
+      "sha256": "cfdb36933f1db1b950387f8897a5d2c3fa4b6d5c44c62de7a003aed9fb022b8a",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "home-calendar.png",
+      "bytes": 100181,
+      "sha256": "19d1d270131a8ee70f3eac76214328df2d0ddf3d797499ffa254e2e00e133248",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "home.png",
+      "bytes": 97649,
+      "sha256": "c6c8f2725c49e156b46c5bdadfffcc23aa8ec8531ff1f681c9abcb461fa83554",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "hotspot-editor.png",
+      "bytes": 26437,
+      "sha256": "7a3c1f9736e76657d022b1ab806f9a8b1d3d26a434c6f696b28650efccaf17c5",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "keyboard-candidates.png",
+      "bytes": 7967,
+      "sha256": "f52c0e08b390c68350bf19df5e6778538a89193e0a58d4a31dd62a1e15c4466a",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; mobile_keyboard_host_test"
+    },
+    {
+      "file": "keyboard-space.png",
+      "bytes": 12639,
+      "sha256": "4d1a823ff2478e936256d244810254b273c0f233e990f91934fa9d4db0259ee2",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; mobile_keyboard_host_test"
+    },
+    {
+      "file": "media-list.png",
+      "bytes": 17253,
+      "sha256": "730f64d6a054b16426e677f33c24e3dd44105f01494f800b66f4a8ec45464025",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "media-menu.png",
+      "bytes": 10056,
+      "sha256": "772fff806faaf0b5def4bbdb25f2ccdfab5ab6b7163d63d87d4e3ac2b2e10abe",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "media-rename.png",
+      "bytes": 19510,
+      "sha256": "6057a72182950b97b9250895953374e6aeba2892b707fa40085b86db36d4a385",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "memory.png",
+      "bytes": 16358,
+      "sha256": "cd4460920b2830bc6100302255e879de80ec093bf7b65ce4cbd8cc7c0861807d",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "mines.png",
+      "bytes": 19074,
+      "sha256": "202d5025aca8aef54f53f1be5601115b96279037eadffb584ddb624a3e5a75bb",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "mobile-media.jpg",
+      "bytes": 43331,
+      "sha256": "2e96341d6ac55900009dfda51c0695a9d679625e71e49f79ee11f52c659abd3b",
+      "width": 415,
+      "height": 869,
+      "frames": 1
+    },
+    {
+      "file": "mobile-ota.jpg",
+      "bytes": 35415,
+      "sha256": "0986a9d8d873e29b5e41e2676d74cdeda5fcb6af6a922ced995f15963b327ade",
+      "width": 430,
+      "height": 700,
+      "frames": 1
+    },
+    {
+      "file": "native-music-saved.png",
+      "bytes": 12477,
+      "sha256": "ff00855aeb13a9e2f7b406105de52580ad9ef06e7daa47828721461945e91ec4",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; own_music_ui_host_test"
+    },
+    {
+      "file": "native-music.png",
+      "bytes": 31614,
+      "sha256": "2960da07eaeeab22763630819378ddcd833f5a2d9bafb1a62e79cce33eee0b1b",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; own_music_ui_host_test"
+    },
+    {
+      "file": "ota-ready.png",
+      "bytes": 21810,
+      "sha256": "f1e88a184e4f077990a375c141b7086a4f57438b922271406e5a340e8544a5e0",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "pcb-3d-2026-11-15.png",
+      "bytes": 521693,
+      "sha256": "1bf232747248e520c13fe5bfa908b1e700200fff0de1c8eaa313e77c2dc43de6",
+      "width": 2160,
+      "height": 1640,
+      "frames": 1
+    },
+    {
+      "file": "playlist.png",
+      "bytes": 20707,
+      "sha256": "e7b708b30ace10f20723865cfdeadd0da07ce6fb9d14cdeb693cdee78563f042",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "quick-panel.png",
+      "bytes": 23314,
+      "sha256": "f97a817c3cdd3c3c8e6ab9cc999006b46d7c121a8e63d5b4670590382f3bda60",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "schematic-page-1.png",
+      "bytes": 369014,
+      "sha256": "96174f457cbae6904249e948fccfa9fcaa3000cbe16aa43fd758cb7898a2f8fc",
+      "width": 1887,
+      "height": 1335,
+      "frames": 1
+    },
+    {
+      "file": "schematic-page-2.png",
+      "bytes": 249656,
+      "sha256": "27db761b1742bf57c2e0304d83d5e80cf80ba6d5d72d613f31bbba23f6a309fd",
+      "width": 1887,
+      "height": 1335,
+      "frames": 1
+    },
+    {
+      "file": "screen-timeout.png",
+      "bytes": 22232,
+      "sha256": "45da125d5fa5f669802d1700755fddf6552221be5ffa94965894ad852870f665",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "settings.png",
+      "bytes": 15985,
+      "sha256": "d3ac9e558b10504413b1c60e5d5c7d1be56eeacca7c45093261d815183d058c3",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "tile-match-progress.png",
+      "bytes": 30510,
+      "sha256": "8b2ebba7b9ec4cd9fd25e627c132051dc854e721cfed3a57758a7097e09b3e4f",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "tile-match.png",
+      "bytes": 33191,
+      "sha256": "db16234edca2d8ed7f49a1b910af31537ecdc8ffcf8999d1805d47b103c259c5",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "tile-scatter-1.25.2.png",
+      "bytes": 33191,
+      "sha256": "db16234edca2d8ed7f49a1b910af31537ecdc8ffcf8999d1805d47b103c259c5",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "voice-female.png",
+      "bytes": 14789,
+      "sha256": "f8441ff8732fd8187e0474b6632351c358f37838aa7acab06c1fb45b7447806f",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "voice-male.png",
+      "bytes": 14426,
+      "sha256": "a247a8a097bdf57fcc4615f53c15f755895464de36a1d3624500b8e8330be4fd",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "weather-all-codes.png",
+      "bytes": 51788,
+      "sha256": "94dac3715fd2ce4e82ba2005fdf692fe815763b2ceeb7b0fc2a736de1221dc1b",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; weather_city_ui_host_test"
+    },
+    {
+      "file": "weather-night.png",
+      "bytes": 37900,
+      "sha256": "b43d0d8676026a06f2dcc9094ef1997c0a472f49ffa701d85f00ee7601570299",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; weather_page_ui_host_test"
+    },
+    {
+      "file": "weather.png",
+      "bytes": 27570,
+      "sha256": "f8f75f8fc9a56d3983ff4e398ef40a666a5e4549f2094d9dcca14ae9200e9d15",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "production LVGL host rendering; synthetic data; weather_page_ui_host_test"
+    },
+    {
+      "file": "wifi-saved.png",
+      "bytes": 22116,
+      "sha256": "14b5e6690d0dfedf91876ea48e0ec958dee86cd7b1db51460c36d0502eb864e4",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "wifi-switching.png",
+      "bytes": 23555,
+      "sha256": "f96863d6160f33acbb8ea31ea75778b4c81fb882735b5f38c90d060928deed5f",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "word-match-complete.png",
+      "bytes": 20598,
+      "sha256": "435e7143404f078410bbdc3ed17d01c0d17e7d8cefb4eaf564b476fa4f621376",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "word-match.png",
+      "bytes": 21289,
+      "sha256": "191d236c1426a8a017de45cd66be37d10948a522180ae33cb71697e6785d95c5",
+      "width": 480,
+      "height": 480,
+      "frames": 1
+    },
+    {
+      "file": "mobile-music.png",
+      "bytes": 65593,
+      "sha256": "02fb5e8e6e86456a5fea5286cfce8f926fac1fb898bd59e6188677be94458336",
+      "width": 540,
+      "height": 1360,
+      "frames": 1,
+      "source": "current embedded HTML, synthetic song/status, 540px browser viewport; no real API calls"
+    },
+    {
+      "file": "service-config.png",
+      "bytes": 85399,
+      "sha256": "fc572b3a4a54a2e89dac56b5bb3d94e26e213b0d58a93ce60019b86fcefe157a",
+      "width": 540,
+      "height": 1900,
+      "frames": 1,
+      "source": "src/service_config_page.h production HTML; synthetic unconfigured state; 540px viewport; no real API calls"
+    },
+    {
+      "file": "system-info.png",
+      "bytes": 30769,
+      "sha256": "039ca7ac7522c4bcf5e644eb56e5f77594d388a7cb70a67f12484d5a8e203f86",
+      "width": 480,
+      "height": 480,
+      "frames": 1,
+      "source": "system_info_host_test production LVGL; synthetic version 1.28.0 and memory values; not device capture"
+    }
+  ]
+}

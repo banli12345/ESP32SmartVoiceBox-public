@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "api_key": "YOUR_SENIVERSE_API_KEY",
+  "now_url": "http://api.seniverse.com/v3/weather/now.json",
+  "daily_url": "http://api.seniverse.com/v3/weather/daily.json",
+  "life_url": "https://api.seniverse.com/v3/life/suggestion.json"
+}

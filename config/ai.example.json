@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "api_base": "https://api.deepseek.com",
+  "api_key": "YOUR_DEEPSEEK_API_KEY",
+  "model": "deepseek-flash",
+  "speak": true
+}

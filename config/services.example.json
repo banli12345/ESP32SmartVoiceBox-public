@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "weather": {
+    "api_key": "YOUR_SENIVERSE_API_KEY",
+    "now_url": "http://api.seniverse.com/v3/weather/now.json",
+    "daily_url": "http://api.seniverse.com/v3/weather/daily.json",
+    "life_url": "https://api.seniverse.com/v3/life/suggestion.json"
+  },
+  "ai": {
+    "version": 1,
+    "api_base": "https://api.deepseek.com",
+    "api_key": "YOUR_DEEPSEEK_API_KEY",
+    "model": "deepseek-flash",
+    "speak": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "source": "https://cdn.sencdn.com/download/data/thinkpage_cities.zip",
+  "archive_sha256": "0058abc9bdd91afb0cdee7782fc7a4e93285eaff0e151b3ecc275ae885550487",
+  "workbook": "城市列表_20260702.xlsx",
+  "sheet": "国内城市",
+  "rows": 3239,
+  "font_source": "city_names_32.txt",
+  "note": "字体覆盖不代表 Key 有权查询每个地点。",
+  "dataset_sha256": "9b22c326f03acd597acd6004208ce9d35f59c81ab47af6b3fb5dc93587bb2e4b"
+}

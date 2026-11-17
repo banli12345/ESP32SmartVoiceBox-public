@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "suggestion": {
+        "dressing": {
+          "brief": "舒适"
+        },
+        "uv": {
+          "brief": "弱"
+        },
+        "flu": {
+          "brief": "少发"
+        },
+        "sport": {
+          "brief": "较不宜"
+        }
+      },
+      "last_update": "2026-11-14T18:41:11+08:00"
+    }
+  ]
+}

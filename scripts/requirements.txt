@@ -1,0 +1,4 @@
+Pillow>=9.1
+pypinyin>=0.49
+imageio-ffmpeg>=0.4.9
+pyserial>=3.5

@@ -1,0 +1,48 @@
+{
+  "document_scope": "Original user-provided schematic and PCB 3D image; not a PCB production validation",
+  "checked_against_idf_commit": "5da8535f834f4401765d94845d5bd0309f29bd4c",
+  "known_document_differences": [
+    "N8R8 schematic label versus current 16 MB Flash firmware",
+    "U6 AMS1117-5.0V label versus 3V3 output net"
+  ],
+  "files": [
+    {
+      "path": "hardware/SCH_Schematic2_2026-11-13.pdf",
+      "source": "SCH_Schematic2_2026-11-13.pdf",
+      "bytes": 442900,
+      "sha256": "d36dd6d39f283250deb4e1d8c2f5ff4c79415c61e74bfe2ebbbfa8cba364759c",
+      "pages": 2,
+      "operation": "original_copy"
+    },
+    {
+      "path": "docs/images/pcb-3d-2026-11-15.png",
+      "source": "3D_PCB1_2026-11-15.png",
+      "bytes": 521693,
+      "sha256": "1bf232747248e520c13fe5bfa908b1e700200fff0de1c8eaa313e77c2dc43de6",
+      "width": 2160,
+      "height": 1640,
+      "format": "PNG",
+      "operation": "original_copy"
+    },
+    {
+      "path": "docs/images/schematic-page-1.png",
+      "source": "SCH_Schematic2_2026-11-13.pdf",
+      "bytes": 369014,
+      "sha256": "96174f457cbae6904249e948fccfa9fcaa3000cbe16aa43fd758cb7898a2f8fc",
+      "width": 1887,
+      "height": 1335,
+      "format": "PNG",
+      "operation": "PDF page rendered at 160 DPI with Poppler"
+    },
+    {
+      "path": "docs/images/schematic-page-2.png",
+      "source": "SCH_Schematic2_2026-11-13.pdf",
+      "bytes": 249656,
+      "sha256": "27db761b1742bf57c2e0304d83d5e80cf80ba6d5d72d613f31bbba23f6a309fd",
+      "width": 1887,
+      "height": 1335,
+      "format": "PNG",
+      "operation": "PDF page rendered at 160 DPI with Poppler"
+    }
+  ]
+}

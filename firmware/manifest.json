@@ -1,0 +1,63 @@
+{
+  "version": "1.28.0",
+  "target": "ESP32-S3 N16R8, project ST7701 480x480 RGB + GT911 wiring",
+  "package": {
+    "file": "BreezeOS-1.28.0-Generic.zip",
+    "bytes": 3633492,
+    "sha256": "76ea04d598ffd375b99f0d5cfffee9ef14341cc13e8b43beb4546d6e4aa95c76"
+  },
+  "contents": [
+    {
+      "file": "BreezeOS-1.28.0-Factory.bin",
+      "bytes": 3494944,
+      "sha256": "563218e04d2462eeb17e1cbc83cca57218a7cbaf62400511f6a7dcda835a99bd"
+    },
+    {
+      "file": "BreezeOS-1.28.0-OTA.bin",
+      "bytes": 3429408,
+      "sha256": "055785bdd7248fa5120c2259b860253998c20c75f1a472a2a10fb3d5c84594e0"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 1295,
+      "sha256": "08e61334ee9873b01778799013752e6e73f02551398f52b522d3dca772a0da6d"
+    },
+    {
+      "file": "config/ai.example.json",
+      "bytes": 152,
+      "sha256": "4b59a710b3ff91fb2d5b14f0e0cc7cb66accb4fdeba974aa39088ab740698283"
+    },
+    {
+      "file": "config/weather.example.json",
+      "bytes": 258,
+      "sha256": "95046bbbbd27df05c1937b785e1f5729147ffa727ae70d1bcf99a165ef113cfa"
+    },
+    {
+      "file": "licenses/LVGL.txt",
+      "bytes": 1080,
+      "sha256": "9c5f886009131a1e7bb57f4f444ad478c34925d036e455e4ad67b6fcd3900c01"
+    },
+    {
+      "file": "licenses/minimp3.txt",
+      "bytes": 6556,
+      "sha256": "6a1ee543e5282cd9061881edf462e6fdab181f328da71fc2c9a6950a80e94d01"
+    }
+  ],
+  "flash": {
+    "factory_offset": "0x0",
+    "mode": "DIO",
+    "frequency": "80MHz",
+    "size": "16MB"
+  },
+  "source_note": "Existing 1.28.0 generic release; same tested runtime as current public source except two inactive legacy host placeholders. This update changes packaging/documentation only.",
+  "privacy": {
+    "api_keys_in_images": false,
+    "personal_wifi_defaults_in_images": false,
+    "factory_nvs_erased": true,
+    "contains_device_flash_dump": false
+  },
+  "resources": "SD fonts, IME, media and other generated SD resources are not included; see deployment guide.",
+  "validation": "Existing release host/native checks and device confirmation apply within their documented scope. No new board or alternate screen hardware test performed for this upload.",
+  "corresponding_public_source_snapshot": "df40f0185eee6189fbfa946c24b12930fedeabb5",
+  "application_elf_sha256": "75b2704a7b40f2b7559b7c2c194f5c95add1c2d9a0c7a659e858ce8233fbfa95"
+}

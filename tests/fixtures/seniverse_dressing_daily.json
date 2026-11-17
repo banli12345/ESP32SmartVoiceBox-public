@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "suggestion": [
+        {
+          "date": "2026-11-14",
+          "dressing": {
+            "brief": "舒适"
+          },
+          "uv": {
+            "brief": "弱"
+          },
+          "flu": {
+            "brief": "少发"
+          },
+          "sport": {
+            "brief": "适宜"
+          }
+        }
+      ],
+      "last_update": "2026-11-14T20:00:00+08:00"
+    }
+  ]
+}

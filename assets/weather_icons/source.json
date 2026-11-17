@@ -1,0 +1,369 @@
+{
+  "source": "User-provided Seniverse white weather icon set",
+  "zip_file": "white (2).zip",
+  "zip_sha256": "84fa0173232c61bad17824b6240b207f5b9b00482b4117760213d56638226a3e",
+  "codes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    99
+  ],
+  "files": [
+    {
+      "file": "0.png",
+      "sha256": "8dc735cd3bd3cfd3da05c66eb85d3e129acab95ffc20066f4ffb84d7bd22852f",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "1.png",
+      "sha256": "cf4e89323593c1b36893fbbd26d2c90f56cc798b661f9e209fca933adaf25412",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "2.png",
+      "sha256": "8dc735cd3bd3cfd3da05c66eb85d3e129acab95ffc20066f4ffb84d7bd22852f",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "3.png",
+      "sha256": "cf4e89323593c1b36893fbbd26d2c90f56cc798b661f9e209fca933adaf25412",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "4.png",
+      "sha256": "c7bc89e5ea2a7045e50fceb77d053e5cdcb973d2672e8db74960774a540757b8",
+      "dimensions": [
+        116,
+        76
+      ]
+    },
+    {
+      "file": "5.png",
+      "sha256": "2e6acf163c0605d97e66cc023f557226153713af5f94842775b7af92fb3e83eb",
+      "dimensions": [
+        116,
+        82
+      ]
+    },
+    {
+      "file": "6.png",
+      "sha256": "212bfae512c70eb9a27705e5e15ecbab04183426740e05c436b884160572207f",
+      "dimensions": [
+        116,
+        96
+      ]
+    },
+    {
+      "file": "7.png",
+      "sha256": "2e6acf163c0605d97e66cc023f557226153713af5f94842775b7af92fb3e83eb",
+      "dimensions": [
+        116,
+        82
+      ]
+    },
+    {
+      "file": "8.png",
+      "sha256": "212bfae512c70eb9a27705e5e15ecbab04183426740e05c436b884160572207f",
+      "dimensions": [
+        116,
+        96
+      ]
+    },
+    {
+      "file": "9.png",
+      "sha256": "5f5f70dc9575e4bec6cd97e8ddc8a8255027db435e900ec61ec6d83b09d58dc4",
+      "dimensions": [
+        116,
+        76
+      ]
+    },
+    {
+      "file": "10.png",
+      "sha256": "087e9d2315f0026dd00c969761a7ffc6f61b336edaa94465bcc43f7f093488be",
+      "dimensions": [
+        116,
+        114
+      ]
+    },
+    {
+      "file": "11.png",
+      "sha256": "9d3b75a8f6ca98adcbe5563709c67a672613bc26cca1a9690e138b203be62fe4",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "12.png",
+      "sha256": "409ac073b1701669348bb773984a62b65072189a0f5ab1acd6958586fff96ab9",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "13.png",
+      "sha256": "3a11511cb8dde9ea5d73bceb7b3a260ffde082d4c79a1f7881b4710719cbc6da",
+      "dimensions": [
+        116,
+        114
+      ]
+    },
+    {
+      "file": "14.png",
+      "sha256": "3c5273192ec5a018a69cc2551b52e90b915bca8340dc8e336ecd75d83e5649d1",
+      "dimensions": [
+        116,
+        114
+      ]
+    },
+    {
+      "file": "15.png",
+      "sha256": "9949d0ecc0e1585416ce4acb920f4baaf2ae186c26b70887821afd8c0f4a31ce",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "16.png",
+      "sha256": "1895f75fcb31e6f7ddd99490d8df9fa05fdc3158cdd12e773147591f2ac155b7",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "17.png",
+      "sha256": "b4e7e4c34e24bb58a5fab19763b1cd38240304fe4c103556f6ae27cbbb8ff0b1",
+      "dimensions": [
+        122,
+        122
+      ]
+    },
+    {
+      "file": "18.png",
+      "sha256": "b4e7e4c34e24bb58a5fab19763b1cd38240304fe4c103556f6ae27cbbb8ff0b1",
+      "dimensions": [
+        122,
+        122
+      ]
+    },
+    {
+      "file": "19.png",
+      "sha256": "c3805981b05b9bbbc86265ba4d4f93a8d35010dd55e6c327218e0c0bc05d0404",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "20.png",
+      "sha256": "f52278c6b56bb93359a62b39454b83d783370852a6a20dac2b68eb077dda4263",
+      "dimensions": [
+        116,
+        114
+      ]
+    },
+    {
+      "file": "21.png",
+      "sha256": "03de8e5637b184c55923e72dc05fabf6f99ce665627f26ec529979956f7c879d",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "22.png",
+      "sha256": "97d57b2937ac9b76dda8417af5b58f83a9d5912cc22ec2113a2ec8e712118292",
+      "dimensions": [
+        116,
+        110
+      ]
+    },
+    {
+      "file": "23.png",
+      "sha256": "cc38ff270c86e978e7dfefff09ac85afee4fdae19bd23b4e4b49250dd2e72de3",
+      "dimensions": [
+        116,
+        110
+      ]
+    },
+    {
+      "file": "24.png",
+      "sha256": "4b20f1de68bc401a8ba276e51666311d879ec70f080616c8298d354d1bc7eeb0",
+      "dimensions": [
+        116,
+        110
+      ]
+    },
+    {
+      "file": "25.png",
+      "sha256": "4ef2a339ec4dad6e5ecd8185c1bc5572b6c783db8fa2ed618767e66177649bd2",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "26.png",
+      "sha256": "d89625efcf69eba932285cdf1521b25534facc4fa04f6fa30d44721d9de9e4d6",
+      "dimensions": [
+        116,
+        98
+      ]
+    },
+    {
+      "file": "27.png",
+      "sha256": "d89625efcf69eba932285cdf1521b25534facc4fa04f6fa30d44721d9de9e4d6",
+      "dimensions": [
+        116,
+        98
+      ]
+    },
+    {
+      "file": "28.png",
+      "sha256": "b4721e025828d5e02cd7b7b7f4e94a93d4793062197a87e08d28c99297d0e0dc",
+      "dimensions": [
+        116,
+        68
+      ]
+    },
+    {
+      "file": "29.png",
+      "sha256": "b4721e025828d5e02cd7b7b7f4e94a93d4793062197a87e08d28c99297d0e0dc",
+      "dimensions": [
+        116,
+        68
+      ]
+    },
+    {
+      "file": "30.png",
+      "sha256": "09a650ba9d2c235715df02bb8f1e8aa8202042abbbd290104bb024ffebc289ee",
+      "dimensions": [
+        112,
+        102
+      ]
+    },
+    {
+      "file": "31.png",
+      "sha256": "cdd80acd96ff4a6a9a31f0c3abe562afc3db3e5cf6e3bddd3daa54a5db204d1a",
+      "dimensions": [
+        116,
+        102
+      ]
+    },
+    {
+      "file": "32.png",
+      "sha256": "437baf1fb96fdea9717a7d12fc2ea61f30c4b377d3ae6ec480dd21333923f092",
+      "dimensions": [
+        116,
+        92
+      ]
+    },
+    {
+      "file": "33.png",
+      "sha256": "437baf1fb96fdea9717a7d12fc2ea61f30c4b377d3ae6ec480dd21333923f092",
+      "dimensions": [
+        116,
+        92
+      ]
+    },
+    {
+      "file": "34.png",
+      "sha256": "708559b5cb49c934fdc9acb8cf925ee373695997cab61fd9d3adb81e444fce82",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "35.png",
+      "sha256": "708559b5cb49c934fdc9acb8cf925ee373695997cab61fd9d3adb81e444fce82",
+      "dimensions": [
+        116,
+        116
+      ]
+    },
+    {
+      "file": "36.png",
+      "sha256": "1b8a6b99791823715969b493a188f3f780d167699cae6bd0995e601035d5ecff",
+      "dimensions": [
+        116,
+        114
+      ]
+    },
+    {
+      "file": "37.png",
+      "sha256": "bb0661946adbc6fc0c0ec6303ab99902d94ab6a8a3954ef9f5dbcbc0fcb90db3",
+      "dimensions": [
+        100,
+        116
+      ]
+    },
+    {
+      "file": "38.png",
+      "sha256": "8dc735cd3bd3cfd3da05c66eb85d3e129acab95ffc20066f4ffb84d7bd22852f",
+      "dimensions": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "99.png",
+      "sha256": "996eac2b15ad7df146a4895e655ab84c836c185565b8c2e33e238790b58678e6",
+      "dimensions": [
+        116,
+        50
+      ]
+    }
+  ]
+}

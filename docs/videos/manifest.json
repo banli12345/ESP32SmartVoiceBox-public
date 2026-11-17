@@ -1,0 +1,32 @@
+{
+  "kind": "user-provided physical-device video, distinct from host UI illustrations",
+  "source_filename": "video_20261115_174520.mp4",
+  "source_bytes": 57594511,
+  "source_sha256": "e8ee03f93b96c2c51d42d16c903c5489327b08986bb1d1e12e0786868d4382ca",
+  "source_video_codec": "HEVC",
+  "source_unchanged": true,
+  "publication_date": "2026-11-15",
+  "video": {
+    "file": "breeze-os-demo.mp4",
+    "sha256": "b3d70d7a0713838400c64c8154411aac62df9212ef2d5414a37e8477d1b75b4f",
+    "bytes": 7000084,
+    "duration_seconds_approx": 42.03,
+    "width": 720,
+    "height": 960,
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "frame_rate": 30,
+    "audio_codec": "AAC",
+    "audio_channels": 2,
+    "full_clip_and_audio_retained": true,
+    "faststart": true
+  },
+  "poster": {
+    "file": "breeze-os-demo-poster.jpg",
+    "sha256": "8dbc497f7fd3822b165780d1b2958573c91f3f60fc46e09eeea1e694556d9b6f",
+    "bytes": 67941,
+    "source_time_seconds": 15,
+    "processing": "Video frame extraction and resize only; no retouching or synthetic UI"
+  },
+  "visible_scope": "Physical enclosure, Breeze OS boot screen, desktop and touch interaction. No claim that all project features are covered."
+}
